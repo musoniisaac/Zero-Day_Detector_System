@@ -2,6 +2,7 @@
 """
 Logging Configuration
 Centralized logging setup for the Zero-Day Detector system
+Created by Isaac Musoni
 """
 
 import logging

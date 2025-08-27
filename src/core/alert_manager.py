@@ -2,6 +2,7 @@
 """
 Alert Manager
 Handles alert processing, routing, and notifications
+Created by Isaac Musoni
 """
 
 import time

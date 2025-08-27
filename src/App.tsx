@@ -81,6 +81,12 @@ function App() {
           </div>
         </div>
       </div>
+      
+      <footer className="bg-slate-800 text-white py-6 mt-12">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-slate-300">Created by <span className="font-semibold text-white">Isaac Musoni</span></p>
+        </div>
+      </footer>
     </div>
   );
 }

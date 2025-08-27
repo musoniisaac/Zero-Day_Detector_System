@@ -2,6 +2,7 @@
 """
 Log Parser Module
 Multi-format log parsing with normalized output
+Created by Isaac Musoni
 """
 
 import re

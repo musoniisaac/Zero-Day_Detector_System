@@ -2,6 +2,7 @@
 """
 Statistical Analyzer
 Real-time anomaly detection using statistical methods
+Created by Isaac Musoni
 """
 
 import time

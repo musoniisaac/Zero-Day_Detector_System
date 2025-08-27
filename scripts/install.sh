@@ -1,6 +1,7 @@
 #!/bin/bash
 # Zero-Day Detector Installation Script for Linux
 # Supports Ubuntu/Debian and CentOS/RHEL systems
+# Created by Isaac Musoni
 
 set -e
 

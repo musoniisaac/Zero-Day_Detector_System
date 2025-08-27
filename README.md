@@ -1,5 +1,7 @@
 # Zero-Day Detector System
 
+**Created by Isaac Musoni**
+
 A lightweight, real-time security monitoring solution for Linux systems that identifies and alerts on potential zero-day attacks and advanced persistent threats using behavioral analysis and statistical anomaly detection.
 
 ## Overview

@@ -2,6 +2,7 @@
 """
 Zero-Day Detector System - Main Entry Point
 Lightweight real-time security monitoring for Linux systems
+Created by Isaac Musoni
 """
 
 import sys

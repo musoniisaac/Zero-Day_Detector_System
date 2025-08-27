@@ -2,6 +2,7 @@
 """
 Rule Engine
 Pattern-based detection using configurable rules
+Created by Isaac Musoni
 """
 
 import re

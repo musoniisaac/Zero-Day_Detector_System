@@ -2,6 +2,7 @@
 """
 Log Monitor
 Real-time system log monitoring and parsing
+Created by Isaac Musoni
 """
 
 import os

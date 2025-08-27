@@ -2,6 +2,7 @@
 """
 Configuration Manager
 Handles loading and validation of system configuration
+Created by Isaac Musoni
 """
 
 import yaml
