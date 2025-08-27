@@ -1,0 +1,19 @@
+# Zero-Day Detector System Dependencies
+# Core system monitoring
+psutil>=5.9.0
+watchdog>=2.1.9
+
+# Network packet capture and analysis
+scapy>=2.4.5
+pypcap>=1.2.3
+
+# Configuration and data processing
+PyYAML>=6.0
+numpy>=1.21.0
+
+# Logging and utilities
+colorlog>=6.7.0
+python-daemon>=2.3.0
+
+# Optional: For enhanced performance
+ujson>=5.4.0

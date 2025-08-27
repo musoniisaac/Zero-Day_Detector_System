@@ -1,0 +1,163 @@
+# Zero-Day Detector System Configuration
+# Default configuration for Linux deployment
+
+system:
+  # Performance settings
+  max_cpu_usage: 5.0          # Maximum CPU usage percentage
+  max_memory_mb: 512          # Maximum memory usage in MB
+  worker_threads: 4           # Number of processing threads
+  queue_size: 10000          # Event queue size
+  
+  # Data retention
+  log_retention_days: 30
+  alert_retention_days: 90
+  baseline_retention_days: 180
+
+data_sources:
+  # System log monitoring
+  system_logs:
+    enabled: true
+    paths:
+      - /var/log/auth.log
+      - /var/log/syslog
+      - /var/log/apache2/access.log
+      - /var/log/nginx/access.log
+    formats: [syslog, apache, nginx]
+    poll_interval: 1.0        # Seconds between file checks
+  
+  # Network monitoring
+  network:
+    enabled: true
+    interfaces: [eth0, wlan0]
+    capture_filter: "not broadcast and not multicast"
+    protocols: [tcp, udp, icmp]
+    buffer_size: 16777216     # 16MB packet capture buffer
+
+detection:
+  # Statistical analysis settings
+  baseline_window_hours: 168   # 7 days for baseline calculation
+  anomaly_sensitivity: medium  # low, medium, high, very_high
+  min_baseline_samples: 100    # Minimum samples before anomaly detection
+  
+  # Rule engine settings
+  rule_update_interval: 300    # Seconds between rule reloads
+  max_concurrent_rules: 1000   # Maximum number of active rules
+
+# Detection rules configuration
+rules:
+  - rule_id: "ssh_brute_force"
+    name: "SSH Brute Force Attack Detection"
+    category: "authentication"
+    severity: "high"
+    enabled: true
+    conditions:
+      failed_ssh:
+        type: "frequency"
+        key_field: "source_ip"
+        threshold: 5
+        time_window: 300      # 5 minutes
+      ssh_pattern:
+        type: "pattern_match"
+        field: "message"
+        pattern: "Failed password.*ssh"
+
+  - rule_id: "port_scan_detection"
+    name: "Port Scanning Activity"
+    category: "network"
+    severity: "medium"
+    enabled: true
+    conditions:
+      connection_rate:
+        type: "frequency"
+        key_field: "source_ip"
+        threshold: 20
+        time_window: 60       # 1 minute
+
+  - rule_id: "suspicious_outbound"
+    name: "Large Outbound Data Transfer"
+    category: "network"
+    severity: "medium"
+    enabled: true
+    conditions:
+      large_transfer:
+        type: "threshold"
+        field: "bytes_sent"
+        threshold: 1073741824  # 1GB
+
+  - rule_id: "sudo_privilege_escalation"
+    name: "Suspicious Sudo Usage"
+    category: "system"
+    severity: "high"
+    enabled: true
+    conditions:
+      sudo_pattern:
+        type: "pattern_match"
+        field: "message"
+        pattern: "sudo.*root"
+      frequency_check:
+        type: "frequency"
+        key_field: "username"
+        threshold: 10
+        time_window: 3600     # 1 hour
+
+# Statistical analysis configuration
+statistics:
+  baseline_window_hours: 168
+  anomaly_sensitivity: "medium"
+  min_baseline_samples: 100
+
+# Alert management configuration
+alerts:
+  max_history: 10000
+  
+  # Rate limiting to prevent alert flooding
+  rate_limiting:
+    enabled: true
+    max_alerts_per_window: 10
+    window_seconds: 300
+  
+  # Severity-based routing
+  severity_routing:
+    critical: [email, syslog, file, webhook]
+    high: [email, syslog, file]
+    medium: [syslog, file]
+    low: [file]
+  
+  # Email notifications
+  email:
+    enabled: false            # Set to true and configure SMTP
+    smtp_server: "localhost"
+    smtp_port: 587
+    use_tls: true
+    username: ""              # SMTP username
+    password: ""              # SMTP password
+    from_address: "zdd@localhost"
+    to_addresses:
+      - "admin@localhost"
+      - "security@localhost"
+  
+  # Syslog notifications
+  syslog:
+    enabled: true
+    facility: "security"
+  
+  # File logging
+  file:
+    enabled: true
+    path: "/var/log/zdd/alerts.log"
+  
+  # Webhook notifications
+  webhook:
+    enabled: false
+    url: ""                   # Webhook URL
+    timeout: 10
+    headers:
+      Content-Type: "application/json"
+
+# Logging configuration
+logging:
+  level: "INFO"               # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "/var/log/zdd/detector.log"
+  max_file_size: 104857600    # 100MB
+  backup_count: 5
+  enable_colors: true
