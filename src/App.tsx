@@ -97,7 +97,7 @@ function SystemOverview() {
       <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
         <h2 className="text-2xl font-bold text-slate-800 mb-4">Executive Summary</h2>
         <p className="text-slate-600 leading-relaxed mb-6">
-          The Zero-Day Detector System is a lightweight, real-time security monitoring solution designed to identify 
+          The Zero-Day Detector System, created by Isaac Musoni, is a lightweight, real-time security monitoring solution designed to identify 
           and alert on potential zero-day attacks and advanced persistent threats. Unlike traditional signature-based 
           systems, it employs behavioral analysis and statistical anomaly detection to identify previously unknown threats.
         </p>
@@ -153,7 +153,6 @@ function SystemOverview() {
               <h3 className="font-semibold text-slate-700 mb-2">Compatibility</h3>
               <ul className="text-slate-600 space-y-1 text-sm">
                 <li>• Linux (Ubuntu 18.04+, CentOS 7+)</li>
-                <li>• Windows (Server 2016+, Windows 10+)</li>
                 <li>• Network protocols: HTTP/HTTPS, DNS, TCP/UDP</li>
                 <li>• Log formats: Syslog, Apache, IIS, CEF</li>
               </ul>
