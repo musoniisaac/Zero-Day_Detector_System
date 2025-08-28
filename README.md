@@ -71,6 +71,15 @@ sudo journalctl -u zdd-detector -f
 # Run in foreground with debug logging
 sudo python3 src/main.py --log-level DEBUG
 
+# Analyze a PCAP file
+python3 src/main.py --pcap-mode --pcap-file /path/to/capture.pcap --output-file results.json
+
+# Analyze all PCAP files in a directory
+python3 src/main.py --pcap-mode --pcap-directory /path/to/pcaps --pcap-pattern "*.pcap*"
+
+# Real-time PCAP analysis (simulate original timing)
+python3 src/main.py --pcap-mode --pcap-file capture.pcap --time-acceleration 1.0
+
 # Validate configuration
 zdd-config validate
 

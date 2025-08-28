@@ -106,6 +106,22 @@ statistics:
   anomaly_sensitivity: "medium"
   min_baseline_samples: 100
 
+# PCAP analysis configuration
+pcap_analysis:
+  # Protocols to analyze in PCAP files
+  protocols: [tcp, udp, icmp]
+  
+  # Analysis window for flow correlation (seconds)
+  analysis_window: 300
+  
+  # Detection thresholds for PCAP analysis
+  thresholds:
+    port_scan_unique_ports: 10
+    port_scan_connections: 20
+    udp_flood_packets: 1000
+    udp_flood_duration: 60
+    large_transfer_bytes: 1073741824  # 1GB
+
 # Alert management configuration
 alerts:
   max_history: 10000

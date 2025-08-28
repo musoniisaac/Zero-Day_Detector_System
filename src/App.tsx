@@ -146,6 +146,10 @@ function SystemOverview() {
                 <li>• Memory Usage: &lt; 512MB RAM</li>
                 <li>• Detection Latency: &lt; 1 second</li>
                 <li>• Log Processing: 10,000+ events/second</li>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <span className="text-slate-600">PCAP file analysis</span>
+                </div>
               </ul>
             </div>
             
@@ -168,6 +172,10 @@ function SystemOverview() {
             <h3 className="font-semibold text-slate-700 mb-3">Network Anomalies</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
+                  <span className="text-slate-600">Historical data analysis</span>
+                </div>
                 <div className="w-2 h-2 bg-red-400 rounded-full"></div>
                 <span className="text-slate-600">Port scanning detection</span>
               </div>
